@@ -1,0 +1,6 @@
+/* @source '..*.{js,ts,jsx,tsx}'; */
+
+@import "tailwindcss";
+
+/* If tw-animate-css provides a raw CSS file, this is the correct way to import it */
+@import "tw-animate-css";
