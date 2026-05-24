@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { toast } from "sonner";
 import { useSiteContent } from "../../context/SiteContentContext";
+import { useAdminFormState } from "../../hooks/useAdminFormState";
 import type { ContactInfo } from "../../types/siteContent";
 import { AdminPage, AdminCard, SaveButton } from "./AdminLayout";
 import { Input } from "../../components/ui/input";
@@ -8,11 +8,22 @@ import { Label } from "../../components/ui/label";
 import { Textarea } from "../../components/ui/textarea";
 
 export function AdminContact() {
-  const { content, updateContent, saveContent } = useSiteContent();
-  const [form, setForm] = useState<ContactInfo>(content.contact);
+  const { content, isLoading, updateContent, saveContent } = useSiteContent();
+  const [form, setForm] = useAdminFormState<ContactInfo>(
+    content.contact,
+    isLoading,
+  );
 
   const handleSave = async () => {
-    const next = { ...content, contact: form };
+    const mailto =
+      form.email && !form.email.startsWith("mailto:")
+        ? `mailto:${form.email}`
+        : form.email;
+    const next = {
+      ...content,
+      contact: form,
+      socialLinks: { ...content.socialLinks, mail: mailto },
+    };
     updateContent(() => next);
     try {
       await saveContent(next);
@@ -35,6 +46,9 @@ export function AdminContact() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <AdminCard>
           <h2 className="font-semibold text-gray-900 mb-4">Contact Details</h2>
+          <p className="text-sm text-gray-500 mb-4">
+            Saving also updates the footer email icon link. Social URLs are edited under Links.
+          </p>
           <div className="space-y-4">
             <div>
               <Label htmlFor="email">Email</Label>

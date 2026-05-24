@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import { toast } from "sonner";
 import { useSiteContent } from "../../context/SiteContentContext";
+import { useAdminFormState } from "../../hooks/useAdminFormState";
 import { AdminPage, AdminCard, SaveButton } from "./AdminLayout";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
@@ -8,13 +9,18 @@ import { Textarea } from "../../components/ui/textarea";
 import { Button } from "../../components/ui/button";
 
 export function AdminSettings() {
-  const { content, updateContent, resetContent, saveContent } = useSiteContent();
-  const [brand, setBrand] = useState(content.brand);
-  const [hero, setHero] = useState(content.hero);
-  const [footer, setFooter] = useState({
-    tagline: content.footer.tagline,
-    copyright: content.footer.copyright,
-  });
+  const { content, isLoading, updateContent, resetContent, saveContent } =
+    useSiteContent();
+  const [brand, setBrand] = useAdminFormState(content.brand, isLoading);
+  const [hero, setHero] = useAdminFormState(content.hero, isLoading);
+  const footerSource = useMemo(
+    () => ({
+      tagline: content.footer.tagline,
+      copyright: content.footer.copyright,
+    }),
+    [content.footer.tagline, content.footer.copyright],
+  );
+  const [footer, setFooter] = useAdminFormState(footerSource, isLoading);
 
   const handleSave = async () => {
     const next = {

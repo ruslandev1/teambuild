@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useSiteContent } from "../../context/SiteContentContext";
+import { useAdminFormState } from "../../hooks/useAdminFormState";
 import type { FooterLink, SocialLinks } from "../../types/siteContent";
 import { AdminPage, AdminCard, SaveButton } from "./AdminLayout";
 import { Input } from "../../components/ui/input";
@@ -9,19 +10,29 @@ import { Label } from "../../components/ui/label";
 import { Button } from "../../components/ui/button";
 
 export function AdminLinks() {
-  const { content, updateContent, saveContent } = useSiteContent();
-  const [social, setSocial] = useState<SocialLinks>(content.socialLinks);
-  const [serviceLinks, setServiceLinks] = useState<FooterLink[]>(
+  const { content, isLoading, updateContent, saveContent } = useSiteContent();
+  const [social, setSocial] = useAdminFormState(content.socialLinks, isLoading);
+  const [serviceLinks, setServiceLinks] = useAdminFormState(
     content.footer.serviceLinks,
+    isLoading,
   );
-  const [industryLinks, setIndustryLinks] = useState<FooterLink[]>(
+  const [industryLinks, setIndustryLinks] = useAdminFormState(
     content.footer.industryLinks,
+    isLoading,
   );
-  const [legal, setLegal] = useState({
-    privacyPolicy: content.footer.privacyPolicy,
-    termsOfService: content.footer.termsOfService,
-    cookiePolicy: content.footer.cookiePolicy,
-  });
+  const legalSource = useMemo(
+    () => ({
+      privacyPolicy: content.footer.privacyPolicy,
+      termsOfService: content.footer.termsOfService,
+      cookiePolicy: content.footer.cookiePolicy,
+    }),
+    [
+      content.footer.privacyPolicy,
+      content.footer.termsOfService,
+      content.footer.cookiePolicy,
+    ],
+  );
+  const [legal, setLegal] = useAdminFormState(legalSource, isLoading);
 
   const handleSave = async () => {
     const next = {
