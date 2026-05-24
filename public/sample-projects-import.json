@@ -1,0 +1,20 @@
+[
+  {
+    "title": "E-Commerce Platform",
+    "category": "Full-Stack Web Application",
+    "description": "Modern online store with inventory and payment integration",
+    "image": "https://images.unsplash.com/photo-1760548425425-e42e77fa38f1?w=1080",
+    "tech": ["React", "Node.js", "Stripe"],
+    "gradient": "from-violet-500 to-purple-500",
+    "projectUrl": "https://example.com"
+  },
+  {
+    "title": "Mobile Booking App",
+    "category": "Web Platform",
+    "description": "Cross-platform reservation system for hospitality clients",
+    "image": "https://images.unsplash.com/photo-1769740333462-9a63bfa914bc?w=1080",
+    "tech": ["Next.js", "TypeScript"],
+    "gradient": "from-blue-500 to-cyan-500",
+    "projectUrl": ""
+  }
+]

@@ -1,7 +1,45 @@
 import { motion } from "motion/react";
 import { Twitter, Linkedin, Github, Mail } from "lucide-react";
+import { Link } from "react-router";
+import { useSiteContent } from "../context/SiteContentContext";
+
+function FooterNavLink({ href, label }: { href: string; label: string }) {
+  if (href.startsWith("#")) {
+    const id = href.slice(1);
+    return (
+      <li>
+        <button
+          type="button"
+          onClick={() => {
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="hover:text-violet-400 transition-colors text-left"
+        >
+          {label}
+        </button>
+      </li>
+    );
+  }
+  return (
+    <li>
+      <a href={href} className="hover:text-violet-400 transition-colors">
+        {label}
+      </a>
+    </li>
+  );
+}
 
 export function Footer() {
+  const { content } = useSiteContent();
+  const { brand, footer, socialLinks } = content;
+
+  const socialItems = [
+    { icon: Twitter, href: socialLinks.twitter, label: "Twitter" },
+    { icon: Linkedin, href: socialLinks.linkedin, label: "LinkedIn" },
+    { icon: Github, href: socialLinks.github, label: "GitHub" },
+    { icon: Mail, href: socialLinks.mail, label: "Email" },
+  ];
+
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -21,42 +59,25 @@ export function Footer() {
           >
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">T</span>
+                <span className="text-white text-xl font-bold">{brand.logoLetter}</span>
               </div>
-              <span className="text-2xl font-semibold">TeamBuild</span>
+              <span className="text-2xl font-semibold">{brand.name}</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
-              Empowering hotels, restaurants, and sales companies with custom web solutions and team building programs that drive real results.
+              {footer.tagline}
             </p>
             <div className="flex gap-3">
-              <motion.a 
-                whileHover={{ scale: 1.1, y: -2 }}
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-br hover:from-violet-600 hover:to-indigo-600 rounded-lg flex items-center justify-center transition-all"
-              >
-                <Twitter size={18} />
-              </motion.a>
-              <motion.a 
-                whileHover={{ scale: 1.1, y: -2 }}
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-br hover:from-violet-600 hover:to-indigo-600 rounded-lg flex items-center justify-center transition-all"
-              >
-                <Linkedin size={18} />
-              </motion.a>
-              <motion.a 
-                whileHover={{ scale: 1.1, y: -2 }}
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-br hover:from-violet-600 hover:to-indigo-600 rounded-lg flex items-center justify-center transition-all"
-              >
-                <Github size={18} />
-              </motion.a>
-              <motion.a 
-                whileHover={{ scale: 1.1, y: -2 }}
-                href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-br hover:from-violet-600 hover:to-indigo-600 rounded-lg flex items-center justify-center transition-all"
-              >
-                <Mail size={18} />
-              </motion.a>
+              {socialItems.map(({ icon: Icon, href, label }) => (
+                <motion.a 
+                  key={label}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  href={href}
+                  aria-label={label}
+                  className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-br hover:from-violet-600 hover:to-indigo-600 rounded-lg flex items-center justify-center transition-all"
+                >
+                  <Icon size={18} />
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 
@@ -68,10 +89,9 @@ export function Footer() {
           >
             <h3 className="font-semibold mb-4 text-lg">Services</h3>
             <ul className="space-y-3 text-gray-400">
-              <li><a href="#" className="hover:text-violet-400 transition-colors">Frontend Development</a></li>
-              <li><a href="#" className="hover:text-violet-400 transition-colors">Backend Solutions</a></li>
-              <li><a href="#" className="hover:text-violet-400 transition-colors">Team Building</a></li>
-              <li><a href="#" className="hover:text-violet-400 transition-colors">Full-Stack Projects</a></li>
+              {footer.serviceLinks.map((link) => (
+                <FooterNavLink key={link.label} href={link.href} label={link.label} />
+              ))}
             </ul>
           </motion.div>
 
@@ -83,10 +103,9 @@ export function Footer() {
           >
             <h3 className="font-semibold mb-4 text-lg">Industries</h3>
             <ul className="space-y-3 text-gray-400">
-              <li><a href="#" className="hover:text-violet-400 transition-colors">Hotels</a></li>
-              <li><a href="#" className="hover:text-violet-400 transition-colors">Restaurants</a></li>
-              <li><a href="#" className="hover:text-violet-400 transition-colors">Sales Companies</a></li>
-              <li><a href="#" className="hover:text-violet-400 transition-colors">All Industries</a></li>
+              {footer.industryLinks.map((link) => (
+                <FooterNavLink key={link.label} href={link.href} label={link.label} />
+              ))}
             </ul>
           </motion.div>
         </motion.div>
@@ -100,12 +119,15 @@ export function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              &copy; 2026 TeamBuild. All rights reserved.
+              {footer.copyright}
             </p>
-            <div className="flex gap-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-violet-400 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-violet-400 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-violet-400 transition-colors">Cookie Policy</a>
+            <div className="flex flex-wrap gap-6 text-sm text-gray-400 items-center">
+              <a href={footer.privacyPolicy} className="hover:text-violet-400 transition-colors">Privacy Policy</a>
+              <a href={footer.termsOfService} className="hover:text-violet-400 transition-colors">Terms of Service</a>
+              <a href={footer.cookiePolicy} className="hover:text-violet-400 transition-colors">Cookie Policy</a>
+              <Link to="/admin" className="hover:text-violet-400 transition-colors opacity-60">
+                Admin
+              </Link>
             </div>
           </div>
         </motion.div>

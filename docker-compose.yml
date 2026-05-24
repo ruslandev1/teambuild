@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: teambuild-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: teambuild
+      POSTGRES_PASSWORD: teambuild
+      POSTGRES_DB: teambuild
+    ports:
+      - "5432:5432"
+    volumes:
+      - teambuild_pg_data:/var/lib/postgresql/data
+
+volumes:
+  teambuild_pg_data:

@@ -1,7 +1,11 @@
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "motion/react";
+import { useSiteContent } from "../context/SiteContentContext";
 
 export function Contact() {
+  const { content } = useSiteContent();
+  const { contact } = content;
+
   return (
     <section id="contact" className="py-24 lg:py-32 bg-gradient-to-br from-violet-50 via-white to-indigo-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -13,13 +17,13 @@ export function Contact() {
           className="text-center mb-16 max-w-3xl mx-auto"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-100 text-violet-700 rounded-full mb-4">
-            <span className="text-sm font-medium">Contact Us</span>
+            <span className="text-sm font-medium">{contact.badge}</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Let's Build Something <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">Amazing Together</span>
+            {contact.heading}<span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">{contact.headingHighlight}</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Ready to transform your business? Let's discuss how we can help you succeed
+            {contact.description}
           </p>
         </motion.div>
 
@@ -38,7 +42,9 @@ export function Contact() {
               <Mail size={28} />
             </motion.div>
             <h3 className="text-lg font-semibold mb-2 text-gray-900">Email Us</h3>
-            <p className="text-gray-600">contact@teambuild.com</p>
+            <a href={`mailto:${contact.email}`} className="text-gray-600 hover:text-violet-600 transition-colors">
+              {contact.email}
+            </a>
           </motion.div>
 
           <motion.div 
@@ -55,7 +61,9 @@ export function Contact() {
               <Phone size={28} />
             </motion.div>
             <h3 className="text-lg font-semibold mb-2 text-gray-900">Call Us</h3>
-            <p className="text-gray-600">+1 (555) 123-4567</p>
+            <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="text-gray-600 hover:text-violet-600 transition-colors">
+              {contact.phone}
+            </a>
           </motion.div>
 
           <motion.div 
@@ -72,7 +80,7 @@ export function Contact() {
               <MapPin size={28} />
             </motion.div>
             <h3 className="text-lg font-semibold mb-2 text-gray-900">Visit Us</h3>
-            <p className="text-gray-600">123 Business Ave, Suite 100</p>
+            <p className="text-gray-600">{contact.address}</p>
           </motion.div>
         </div>
 
@@ -84,7 +92,7 @@ export function Contact() {
           className="max-w-3xl mx-auto"
         >
           <div className="bg-white rounded-3xl p-8 lg:p-12 border border-gray-200 shadow-xl">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}

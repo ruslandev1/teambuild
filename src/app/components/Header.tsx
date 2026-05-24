@@ -1,8 +1,11 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
+import { useSiteContent } from "../context/SiteContentContext";
 
 export function Header() {
+  const { content } = useSiteContent();
+  const { brand } = content;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -25,13 +28,14 @@ export function Header() {
           <div className="flex items-center">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">T</span>
+                <span className="text-white text-xl font-bold">{brand.logoLetter}</span>
               </div>
-              <span className="text-2xl font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">TeamBuild</span>
+              <span className="text-2xl font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
+                {brand.name}
+              </span>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             <button onClick={() => scrollToSection('home')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
               Home
@@ -50,7 +54,6 @@ export function Header() {
             </button>
           </nav>
 
-          {/* Mobile menu button */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -59,7 +62,6 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <motion.nav
             initial={{ opacity: 0, y: -20 }}
