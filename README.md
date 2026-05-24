@@ -1,60 +1,36 @@
 # TeamBuild
 
-Marketing site with an admin panel, backed by **Hono** + **PostgreSQL**.
+Marketing website and admin panel for a team-building and web development company.
+
+**Full documentation:** [DOCUMENTATION.md](./DOCUMENTATION.md) — tech stack, architecture, API, setup, and deployment.
+
+## Stack at a glance
+
+| Layer | Tech |
+|-------|------|
+| Frontend | React 18 · TypeScript · Vite 6 · Tailwind CSS 4 · React Router 7 |
+| UI | Radix UI · Lucide · Motion · Sonner |
+| Backend | Hono 4 · Node.js · TypeScript |
+| Database | PostgreSQL 16 · JSONB (`postgres.js`) |
+| Auth | JWT (`jose`) |
 
 ## Quick start
 
-### 1. PostgreSQL
-
 ```bash
-docker compose up -d postgres
-```
+# PostgreSQL
+npm run db:up
 
-Or use any Postgres instance and set `DATABASE_URL` in `server/.env` (see `server/.env.example`).
-
-### 2. API (Hono)
-
-```bash
+# API
 cp server/.env.example server/.env
-cd server && npm install
-npm run db:migrate
-npm run dev
+cd server && npm install && npm run db:migrate && npm run dev
+
+# Frontend (new terminal)
+npm install && npm run dev
 ```
 
-API runs at `http://localhost:3001`.
+Or run both: `npm run dev:all`
 
-### 3. Frontend (Vite + React)
+- Site: http://localhost:5173  
+- Admin: http://localhost:5173/admin (password: `teambuild-admin`)
 
-```bash
-npm install
-npm run dev
-```
-
-Site: `http://localhost:5173` · Admin: `http://localhost:5173/admin`
-
-Run both together:
-
-```bash
-npm run dev:all
-```
-
-Default admin password: `teambuild-admin` (set `ADMIN_PASSWORD` in `server/.env`).
-
-## API
-
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | `/api/health` | — | Health check |
-| GET | `/api/site-content` | — | Public site content |
-| PUT | `/api/site-content` | Bearer JWT | Save content |
-| POST | `/api/site-content/reset` | Bearer JWT | Reset to defaults |
-| POST | `/api/auth/login` | — | `{ "password": "..." }` → `{ "token" }` |
-
-Content is stored as JSONB in PostgreSQL (`site_content` table).
-
-## Project layout
-
-- `src/` — React frontend + admin UI
-- `server/` — Hono API
-- `shared/` — `SiteContent` types and defaults (used by both)
-  
+See [DOCUMENTATION.md](./DOCUMENTATION.md) for details.
