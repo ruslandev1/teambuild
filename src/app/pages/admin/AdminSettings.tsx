@@ -76,7 +76,21 @@ export function AdminSettings() {
               />
             </div>
             <div>
-              <Label>Logo Letter</Label>
+              <Label>Logo URL</Label>
+              <Input
+                value={brand.logoUrl ?? ""}
+                onChange={(e) =>
+                  setBrand((b) => ({
+                    ...b,
+                    logoUrl: e.target.value || undefined,
+                  }))
+                }
+                className="mt-1.5"
+                placeholder="/finora-logo.png"
+              />
+            </div>
+            <div>
+              <Label>Logo Letter (fallback)</Label>
               <Input
                 value={brand.logoLetter}
                 onChange={(e) =>

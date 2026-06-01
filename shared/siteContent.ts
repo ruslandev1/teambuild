@@ -50,6 +50,7 @@ export interface SiteContent {
   brand: {
     name: string;
     logoLetter: string;
+    logoUrl?: string;
   };
   hero: HeroContent;
   contact: ContactInfo;

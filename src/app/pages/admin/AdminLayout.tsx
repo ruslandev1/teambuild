@@ -9,6 +9,8 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { useAdminAuth } from "../../context/AdminAuthContext";
+import { useSiteContent } from "../../context/SiteContentContext";
+import { BrandLogo } from "../../components/BrandLogo";
 import { Button } from "../../components/ui/button";
 
 const navItems = [
@@ -21,6 +23,7 @@ const navItems = [
 
 export function AdminLayout() {
   const { isAuthenticated, logout } = useAdminAuth();
+  const { content } = useSiteContent();
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;
@@ -30,15 +33,11 @@ export function AdminLayout() {
     <div className="min-h-screen bg-gray-50 flex">
       <aside className="w-64 bg-gray-900 text-white flex flex-col shrink-0">
         <div className="p-6 border-b border-gray-800">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-lg flex items-center justify-center font-bold">
-              T
-            </div>
-            <div>
-              <p className="font-semibold">TeamBuild</p>
-              <p className="text-xs text-gray-400">Admin Panel</p>
-            </div>
-          </div>
+          <BrandLogo
+            brand={content.brand}
+            nameClassName="font-semibold"
+          />
+          <p className="text-xs text-gray-400 mt-1">Admin Panel</p>
         </div>
 
         <nav className="flex-1 p-4 space-y-1">

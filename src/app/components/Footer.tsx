@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Twitter, Linkedin, Github, Mail } from "lucide-react";
 import { Link } from "react-router";
 import { useSiteContent } from "../context/SiteContentContext";
+import { BrandLogo } from "./BrandLogo";
 
 function FooterNavLink({ href, label }: { href: string; label: string }) {
   if (href.startsWith("#")) {
@@ -57,11 +58,8 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="lg:col-span-2"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">{brand.logoLetter}</span>
-              </div>
-              <span className="text-2xl font-semibold">{brand.name}</span>
+            <div className="mb-4">
+              <BrandLogo brand={brand} />
             </div>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
               {footer.tagline}

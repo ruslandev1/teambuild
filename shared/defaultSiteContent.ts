@@ -2,8 +2,9 @@ import type { SiteContent } from "./siteContent.js";
 
 export const defaultSiteContent: SiteContent = {
   brand: {
-    name: "TeamBuild",
-    logoLetter: "T",
+    name: "Finora",
+    logoLetter: "F",
+    logoUrl: "/finora-logo.png",
   },
   hero: {
     badge: "Trusted by 500+ Businesses",
@@ -27,8 +28,8 @@ export const defaultSiteContent: SiteContent = {
     headingHighlight: "Amazing Together",
     description:
       "Ready to transform your business? Let's discuss how we can help you succeed",
-    email: "contact@teambuild.com",
-    phone: "+1 (555) 123-4567",
+    email: "info@finorasystem.com",
+    phone: "+994 77 333 05 55",
     address: "123 Business Ave, Suite 100",
   },
   projects: [
@@ -73,12 +74,12 @@ export const defaultSiteContent: SiteContent = {
     twitter: "#",
     linkedin: "#",
     github: "#",
-    mail: "mailto:contact@teambuild.com",
+    mail: "mailto:info@finorasystem.com",
   },
   footer: {
     tagline:
       "Empowering hotels, restaurants, and sales companies with custom web solutions and team building programs that drive real results.",
-    copyright: "© 2026 TeamBuild. All rights reserved.",
+    copyright: "© 2026 Finora. All rights reserved.",
     serviceLinks: [
       { label: "Frontend Development", href: "#services" },
       { label: "Backend Solutions", href: "#services" },

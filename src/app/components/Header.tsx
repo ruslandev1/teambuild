@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { useSiteContent } from "../context/SiteContentContext";
+import { BrandLogo } from "./BrandLogo";
 
 export function Header() {
   const { content } = useSiteContent();
@@ -26,14 +27,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">{brand.logoLetter}</span>
-              </div>
-              <span className="text-2xl font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                {brand.name}
-              </span>
-            </div>
+            <BrandLogo
+              brand={brand}
+              nameClassName="text-2xl font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent"
+            />
           </div>
 
           <nav className="hidden md:flex items-center space-x-1">
