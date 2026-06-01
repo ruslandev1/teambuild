@@ -85,7 +85,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="font-semibold mb-4 text-lg">Services</h3>
+            <h3 className="font-semibold mb-4 text-lg">Modules</h3>
             <ul className="space-y-3 text-gray-400">
               {footer.serviceLinks.map((link) => (
                 <FooterNavLink key={link.label} href={link.href} label={link.label} />
@@ -99,7 +99,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="font-semibold mb-4 text-lg">Industries</h3>
+            <h3 className="font-semibold mb-4 text-lg">Solutions</h3>
             <ul className="space-y-3 text-gray-400">
               {footer.industryLinks.map((link) => (
                 <FooterNavLink key={link.label} href={link.href} label={link.label} />

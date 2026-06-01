@@ -37,17 +37,17 @@ export function Header() {
             <button onClick={() => scrollToSection('home')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
               Home
             </button>
-            <button onClick={() => scrollToSection('services')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
-              Services
+            <button onClick={() => scrollToSection('modules')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
+              Modules
             </button>
-            <button onClick={() => scrollToSection('industries')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
-              Industries
+            <button onClick={() => scrollToSection('solutions')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
+              Solutions
             </button>
-            <button onClick={() => scrollToSection('projects')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
-              Projects
+            <button onClick={() => scrollToSection('platforms')} className="px-4 py-2 text-gray-600 hover:text-violet-600 transition-colors rounded-lg hover:bg-violet-50">
+              Platforms
             </button>
             <button onClick={() => scrollToSection('contact')} className="ml-4 px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-lg hover:shadow-lg hover:shadow-violet-500/50 transition-all">
-              Get Started
+              Request Demo
             </button>
           </nav>
 
@@ -68,17 +68,17 @@ export function Header() {
             <button onClick={() => scrollToSection('home')} className="block w-full text-left px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors">
               Home
             </button>
-            <button onClick={() => scrollToSection('services')} className="block w-full text-left px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors">
-              Services
+            <button onClick={() => scrollToSection('modules')} className="block w-full text-left px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors">
+              Modules
             </button>
-            <button onClick={() => scrollToSection('industries')} className="block w-full text-left px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors">
-              Industries
+            <button onClick={() => scrollToSection('solutions')} className="block w-full text-left px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors">
+              Solutions
             </button>
-            <button onClick={() => scrollToSection('projects')} className="block w-full text-left px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors">
-              Projects
+            <button onClick={() => scrollToSection('platforms')} className="block w-full text-left px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors">
+              Platforms
             </button>
             <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-4 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-lg">
-              Get Started
+              Request Demo
             </button>
           </motion.nav>
         )}

@@ -169,13 +169,13 @@ export function AdminLinks() {
         </AdminCard>
 
         <LinkEditor
-          title="Footer — Services Links"
+          title="Footer — Modules Links"
           links={serviceLinks}
           setLinks={setServiceLinks}
         />
 
         <LinkEditor
-          title="Footer — Industries Links"
+          title="Footer — Solutions Links"
           links={industryLinks}
           setLinks={setIndustryLinks}
         />

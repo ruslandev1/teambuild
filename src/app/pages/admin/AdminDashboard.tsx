@@ -13,8 +13,8 @@ const quickLinks = [
   },
   {
     to: "/admin/projects",
-    label: "Projects",
-    description: "Add, edit, delete, or import portfolio items",
+    label: "Platforms",
+    description: "Manage Finora System and Finora Careers listings",
     icon: FolderKanban,
     color: "from-violet-500 to-purple-500",
   },
@@ -44,7 +44,7 @@ export function AdminDashboard() {
     >
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <AdminCard>
-          <p className="text-sm text-gray-500">Projects</p>
+          <p className="text-sm text-gray-500">Platforms</p>
           <p className="text-3xl font-bold text-gray-900 mt-1">
             {content.projects.length}
           </p>

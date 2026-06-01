@@ -79,8 +79,19 @@ export function Contact() {
             >
               <MapPin size={28} />
             </motion.div>
-            <h3 className="text-lg font-semibold mb-2 text-gray-900">Visit Us</h3>
-            <p className="text-gray-600">{contact.address}</p>
+            <h3 className="text-lg font-semibold mb-2 text-gray-900">Website</h3>
+            {contact.address.startsWith("http") ? (
+              <a
+                href={contact.address}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-violet-600 transition-colors break-all"
+              >
+                {contact.address.replace(/^https?:\/\/(www\.)?/, "")}
+              </a>
+            ) : (
+              <p className="text-gray-600">{contact.address}</p>
+            )}
           </motion.div>
         </div>
 
@@ -151,7 +162,7 @@ export function Contact() {
                   id="message"
                   rows={5}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us about your organization and which Finora product you need..."
                 ></textarea>
               </motion.div>
 

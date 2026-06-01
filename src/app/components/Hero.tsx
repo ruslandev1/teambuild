@@ -70,7 +70,7 @@ export function Hero() {
                 onClick={scrollToContact}
                 className="px-8 py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-xl inline-flex items-center gap-2 font-medium shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all"
               >
-                Get Started <ArrowRight size={20} />
+                Request Demo <ArrowRight size={20} />
               </motion.button>
 
               {hero.demoVideoUrl && (
@@ -131,8 +131,8 @@ export function Hero() {
                   <CheckCircle2 className="text-white" size={24} />
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Successfully Launched</div>
-                  <div className="text-sm text-gray-600">300+ Projects This Year</div>
+                  <div className="font-semibold text-gray-900">Full Automation</div>
+                  <div className="text-sm text-gray-600">Up to 70% less manual work</div>
                 </div>
               </div>
             </motion.div>
